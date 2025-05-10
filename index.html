@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HvH.fun Panel</title>
+  <style>
+    :root {
+      --bg-color: #131313;
+      --card-color: #212121;
+      --accent-color: #58a6ff;
+      --error-color: #f85149;
+      --text-color: #ffffff;
+      --border-radius: 12px;
+      --transition-speed: 0.4s;
+      --hover-scale: 1.05;
+      --box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, rgba(40, 44, 52, 1) 0%, rgba(0, 0, 0, 1) 100%);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      background-color: var(--card-color);
+      padding: 20px;
+      transition: transform var(--transition-speed);
+      transform: scale(1.05);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: background-color var(--transition-speed), transform var(--transition-speed);
+    }
+
+    button:focus, button:hover {
+      background-color: #4096e0;
+      transform: scale(var(--hover-scale));
+    }
+
+    .error {
+      color: var(--error-color);
+      text-align: center;
+      font-size: 14px;
+      display: none;
+    }
+
+    .quote {
+      font-size: 20px;
+      color: var(--accent-color);
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .panel button {
+      margin-top: 10px;
+    }
+
+    /* About Us section */
+    .about-us-section {
+      background-color: #212121;
+      padding: 20px;
+      width: 100%;
+      max-width: 480px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .about-us-section h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .about-us-section p {
+      font-size: 16px;
+      color: #bbb;
+      margin: 15px 0;
+    }
+
+    .about-us-section img {
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 10px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Quote instead of "X days left" */
+    .quote {
+      font-size: 18px;
+      color: var(--accent-color);
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    @media screen and (max-width: 500px) {
+      .container {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HvH.fun Panel -->
+    <div class="panel" id="panelBox">
+      <h2>HvH.fun Panel</h2>
+      <p class="quote" id="quoteDisplay">"Play fair, but play smart."</p>
+      <button onclick="downloadLoader('primordial')">Download Primordial</button>
+      <button onclick="downloadLoader('fatality')">Download Fatality</button>
+      <button onclick="downloadLoader('gamesense')">Download Gamesense</button>
+      <button onclick="downloadLoader('evolve')">Download Evolve</button>
+    </div>
+  </div>
+
+  <!-- About Us section -->
+  <div class="about-us-section">
+    <h3>About Us</h3>
+    <img src="https://i.imgur.com/G9I2a62.png" alt="HvH.fun Logo" />
+    <p>We are <strong>HvH.fun</strong>, your reliable source for <strong>CS:GO cheats</strong>. Our mission is to provide high-quality and safe tools for players who want to improve and try something new. Our site offers a wide range of cheats that you can download and use in your game to gain an edge. Security and discretion are our top priorities. We aim to provide you with tools that help improve your gaming skills.</p>
+    <p>Join us and discover a new world of game cheats!</p>
+  </div>
+
+  <script>
+    // Function to generate a random UID based on user count
+    function generateUID() {
+      return Math.floor(Math.random() * 1000000); // Generates a random UID
+    }
+
+    // Function to download cheat
+    function downloadLoader(type) {
+      let url = '';
+      switch(type) {
+        case 'primordial':
+          url = 'https://mega.nz/file/TYh30ZAJ#UqX5P8-KHuB88DwUWgA9YG-MXEF_fP1X-1-YPhLUHYQ';
+          break;
+        case 'fatality':
+          url = 'https://cdn.discordapp.com/attachments/1365051778483097610/1366000158868766812/fatality_t.dll?ex=68207dc8&is=681f2c48&hm=6c1f5be5b3ecdaf5881ba0cd9a7d96ab2c3b6ea795fd0a2f9f2ced29f9659413';
+          break;
+        case 'gamesense':
+          url = 'https://mega.nz/file/nVg0BAAC#lJ0xSj4sT9usWym59NfmyPnDXSsZuSsIZvlJ77u-lj0';
+          break;
+        case 'evolve':
+          url = 'https://cdn.discordapp.com/attachments/1366449626361757797/1366449855429480488/ev0lve-old.rar?ex=6820cf18&is=681f7d98&hm=0e331fb0b1e98e6e4a5661ebd266f75941691ab314b4c8aec1feaf201531a84a';
+          break;
+      }
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
