@@ -6,129 +6,113 @@
   <title>HvH.fun Panel</title>
   <style>
     :root {
-      --bg-color: #131313;
-      --card-color: #212121;
-      --accent-color: #58a6ff;
-      --error-color: #f85149;
-      --text-color: #ffffff;
-      --border-radius: 12px;
-      --transition-speed: 0.4s;
-      --hover-scale: 1.05;
-      --box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+      --bg-color: #0f1115;
+      --card-color: #1a1d23;
+      --accent-color: #3b82f6;
+      --accent-hover: #2563eb;
+      --error-color: #ef4444;
+      --text-color: #e5e7eb;
+      --muted-text: #9ca3af;
+      --border-radius: 14px;
+      --transition-speed: 0.3s;
+      --hover-scale: 1.03;
+      --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
     }
 
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, rgba(40, 44, 52, 1) 0%, rgba(0, 0, 0, 1) 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(145deg, #0f1115 0%, #1a1d23 100%);
       color: var(--text-color);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
+      padding: 40px 20px;
+      min-height: 100vh;
       box-sizing: border-box;
     }
 
-    .container {
+    .container,
+    .about-us-section {
       width: 100%;
-      max-width: 480px;
+      max-width: 460px;
+      background-color: var(--card-color);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
-      background-color: var(--card-color);
-      padding: 20px;
+      padding: 24px;
+      margin-bottom: 30px;
       transition: transform var(--transition-speed);
-      transform: scale(1.05);
+    }
+
+    .container:hover {
+      transform: scale(var(--hover-scale));
+    }
+
+    h2, h3 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 16px;
     }
 
     h2 {
+      font-size: 26px;
+    }
+
+    h3 {
+      font-size: 22px;
+    }
+
+    .quote {
+      font-size: 17px;
+      color: var(--accent-color);
+      font-style: italic;
       text-align: center;
-      font-size: 28px;
-      margin-bottom: 1rem;
-      font-weight: 600;
+      margin-bottom: 1.5rem;
     }
 
     button {
       width: 100%;
       padding: 12px;
-      margin-bottom: 15px;
-      background-color: var(--accent-color);
+      margin-bottom: 12px;
+      font-size: 15px;
       color: var(--text-color);
+      background: linear-gradient(to right, var(--accent-color), #60a5fa);
       border: none;
       border-radius: var(--border-radius);
-      font-size: 16px;
-      box-sizing: border-box;
-      transition: background-color var(--transition-speed), transform var(--transition-speed);
+      cursor: pointer;
+      transition: background var(--transition-speed), transform var(--transition-speed);
     }
 
-    button:focus, button:hover {
-      background-color: #4096e0;
+    button:hover,
+    button:focus {
+      background: var(--accent-hover);
       transform: scale(var(--hover-scale));
     }
 
     .error {
+      display: none;
       color: var(--error-color);
       text-align: center;
       font-size: 14px;
-      display: none;
-    }
-
-    .quote {
-      font-size: 20px;
-      color: var(--accent-color);
-      text-align: center;
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-
-    .panel button {
-      margin-top: 10px;
-    }
-
-    /* About Us section */
-    .about-us-section {
-      background-color: #212121;
-      padding: 20px;
-      width: 100%;
-      max-width: 480px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .about-us-section h3 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      font-weight: 600;
+      margin-top: 12px;
     }
 
     .about-us-section p {
-      font-size: 16px;
-      color: #bbb;
-      margin: 15px 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted-text);
     }
 
     .about-us-section img {
-      display: block;
-      margin: 0 auto 20px;
+      max-width: 80%;
+      margin: 0 auto 16px;
       border-radius: 10px;
-      max-width: 100%;
-      height: auto;
+      display: block;
     }
 
-    /* Quote instead of "X days left" */
-    .quote {
-      font-size: 18px;
-      color: var(--accent-color);
-      text-align: center;
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-
-    @media screen and (max-width: 500px) {
-      .container {
-        width: 90%;
+    @media (max-width: 500px) {
+      .container, .about-us-section {
+        width: 95%;
       }
     }
   </style>
@@ -155,12 +139,10 @@
   </div>
 
   <script>
-    // Function to generate a random UID based on user count
     function generateUID() {
-      return Math.floor(Math.random() * 1000000); // Generates a random UID
+      return Math.floor(Math.random() * 1000000);
     }
 
-    // Function to download cheat
     function downloadLoader(type) {
       let url = '';
       switch(type) {
