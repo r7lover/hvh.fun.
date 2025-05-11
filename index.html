@@ -4,160 +4,192 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HvH.fun Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #0f1115;
-      --card-color: #1a1d23;
-      --accent-color: #3b82f6;
-      --accent-hover: #2563eb;
-      --error-color: #ef4444;
-      --text-color: #e5e7eb;
-      --muted-text: #9ca3af;
-      --border-radius: 14px;
-      --transition-speed: 0.3s;
-      --hover-scale: 1.03;
-      --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      --bg-dark: #0d0d0d;
+      --bg-light: #f9f9f9;
+      --glass-bg-dark: rgba(30, 30, 30, 0.75);
+      --glass-bg-light: rgba(255, 255, 255, 0.6);
+      --text-dark: #ffffff;
+      --text-light: #111111;
+      --accent: #00f0ff;
+      --error: #f44336;
+      --radius: 18px;
+      --transition: 0.4s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(145deg, #0f1115 0%, #1a1d23 100%);
-      color: var(--text-color);
+      min-height: 100vh;
+      background: var(--bg-dark);
+      color: var(--text-dark);
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 40px 20px;
-      min-height: 100vh;
-      box-sizing: border-box;
+      transition: var(--transition);
+      overflow: hidden;
     }
 
-    .container,
-    .about-us-section {
+    .toggle-theme {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      border: none;
+      color: black;
+      padding: 8px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .glass-card {
+      background: var(--glass-bg-dark);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      max-width: 540px;
       width: 100%;
-      max-width: 460px;
-      background-color: var(--card-color);
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      padding: 24px;
+      padding: 30px;
       margin-bottom: 30px;
-      transition: transform var(--transition-speed);
-    }
-
-    .container:hover {
-      transform: scale(var(--hover-scale));
+      text-align: center;
+      animation: slideUp 1s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     h2, h3 {
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    h2 {
-      font-size: 26px;
-    }
-
-    h3 {
-      font-size: 22px;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: var(--accent);
     }
 
     .quote {
-      font-size: 17px;
-      color: var(--accent-color);
       font-style: italic;
-      text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 25px;
+      color: var(--accent);
     }
 
-    button {
+    .button {
+      display: block;
       width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      font-size: 15px;
-      color: var(--text-color);
-      background: linear-gradient(to right, var(--accent-color), #60a5fa);
-      border: none;
-      border-radius: var(--border-radius);
+      padding: 14px;
+      margin: 10px 0;
+      font-size: 16px;
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      border-radius: var(--radius);
       cursor: pointer;
-      transition: background var(--transition-speed), transform var(--transition-speed);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
     }
 
-    button:hover,
-    button:focus {
-      background: var(--accent-hover);
-      transform: scale(var(--hover-scale));
-    }
-
-    .error {
-      display: none;
-      color: var(--error-color);
-      text-align: center;
-      font-size: 14px;
-      margin-top: 12px;
-    }
-
-    .about-us-section p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--muted-text);
+    .button:hover {
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 15px var(--accent);
     }
 
     .about-us-section img {
-      max-width: 80%;
-      margin: 0 auto 16px;
-      border-radius: 10px;
-      display: block;
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
     }
 
-    @media (max-width: 500px) {
-      .container, .about-us-section {
-        width: 95%;
-      }
+    .about-us-section p {
+      font-size: 14px;
+      color: #ccc;
+      margin: 10px 0;
+    }
+
+    .notification {
+      display: none;
+      color: #90ee90;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 540px) {
+      h2, h3 { font-size: 22px; }
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzlhNDc4amswczBycHd2dWtxMGN1bHlpeTdjYnBtbmwxbWV6bnF3ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VwXcgwGIPyiiY/giphy.gif') center center / cover no-repeat;
+      opacity: 0.25;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- HvH.fun Panel -->
-    <div class="panel" id="panelBox">
-      <h2>HvH.fun Panel</h2>
-      <p class="quote" id="quoteDisplay">"Play fair, but play smart."</p>
-      <button onclick="downloadLoader('primordial')">Download Primordial</button>
-      <button onclick="downloadLoader('fatality')">Download Fatality</button>
-      <button onclick="downloadLoader('gamesense')">Download Gamesense</button>
-      <button onclick="downloadLoader('evolve')">Download Evolve</button>
-    </div>
+  <div class="particles"></div>
+  <button class="toggle-theme" onclick="toggleTheme()">Toggle Theme</button>
+
+  <div class="glass-card">
+    <h2>HvH.fun Panel</h2>
+    <p class="quote">"Play fair, but play smart."</p>
+    <button class="button" onclick="downloadLoader('primordial')">Download Primordial</button>
+    <button class="button" onclick="downloadLoader('fatality')">Download Fatality</button>
+    <button class="button" onclick="downloadLoader('gamesense')">Download Gamesense</button>
+    <button class="button" onclick="downloadLoader('evolve')">Download Evolve</button>
+    <p class="notification" id="notifyText">✅ Download started...</p>
   </div>
 
-  <!-- About Us section -->
-  <div class="about-us-section">
+  <div class="glass-card about-us-section">
     <h3>About Us</h3>
     <img src="https://i.imgur.com/G9I2a62.png" alt="HvH.fun Logo" />
-    <p>We are <strong>HvH.fun</strong>, your reliable source for <strong>CS:GO cheats</strong>. Our mission is to provide high-quality and safe tools for players who want to improve and try something new. Our site offers a wide range of cheats that you can download and use in your game to gain an edge. Security and discretion are our top priorities. We aim to provide you with tools that help improve your gaming skills.</p>
-    <p>Join us and discover a new world of game cheats!</p>
+    <p>HvH.fun is your premium portal to elite CS2 experiences. We deliver secure, high-performance cheat loaders for the best possible edge.</p>
+    <p>Everything is clean, fast, and free. Our cheats are tested, updated, and crafted for top-tier gameplay.</p>
   </div>
 
   <script>
-    function generateUID() {
-      return Math.floor(Math.random() * 1000000);
+    function toggleTheme() {
+      const root = document.documentElement;
+      document.body.classList.toggle('light-mode');
+
+      if (document.body.classList.contains('light-mode')) {
+        root.style.setProperty('--bg-dark', '#f9f9f9');
+        root.style.setProperty('--glass-bg-dark', 'rgba(255, 255, 255, 0.6)');
+        root.style.setProperty('--text-dark', '#111111');
+      } else {
+        root.style.setProperty('--bg-dark', '#0d0d0d');
+        root.style.setProperty('--glass-bg-dark', 'rgba(30, 30, 30, 0.75)');
+        root.style.setProperty('--text-dark', '#ffffff');
+      }
     }
 
     function downloadLoader(type) {
+      const notify = document.getElementById('notifyText');
+      notify.style.display = 'block';
+      setTimeout(() => notify.style.display = 'none', 2500);
+
       let url = '';
       switch(type) {
         case 'primordial':
-          url = 'https://mega.nz/file/TYh30ZAJ#UqX5P8-KHuB88DwUWgA9YG-MXEF_fP1X-1-YPhLUHYQ';
-          break;
+          url = 'https://mega.nz/file/TYh30ZAJ#UqX5P8-KHuB88DwUWgA9YG-MXEF_fP1X-1-YPhLUHYQ'; break;
         case 'fatality':
-          url = 'https://cdn.discordapp.com/attachments/1365051778483097610/1366000158868766812/fatality_t.dll?ex=68207dc8&is=681f2c48&hm=6c1f5be5b3ecdaf5881ba0cd9a7d96ab2c3b6ea795fd0a2f9f2ced29f9659413';
-          break;
+          url = 'https://cdn.discordapp.com/attachments/1365051778483097610/1366000158868766812/fatality_t.dll?ex=68207dc8&is=681f2c48&hm=6c1f5be5b3ecdaf5881ba0cd9a7d96ab2c3b6ea795fd0a2f9f2ced29f9659413'; break;
         case 'gamesense':
-          url = 'https://mega.nz/file/nVg0BAAC#lJ0xSj4sT9usWym59NfmyPnDXSsZuSsIZvlJ77u-lj0';
-          break;
+          url = 'https://mega.nz/file/nVg0BAAC#lJ0xSj4sT9usWym59NfmyPnDXSsZuSsIZvlJ77u-lj0'; break;
         case 'evolve':
-          url = 'https://cdn.discordapp.com/attachments/1366449626361757797/1366449855429480488/ev0lve-old.rar?ex=6820cf18&is=681f7d98&hm=0e331fb0b1e98e6e4a5661ebd266f75941691ab314b4c8aec1feaf201531a84a';
-          break;
+          url = 'https://cdn.discordapp.com/attachments/1366449626361757797/1366449855429480488/ev0lve-old.rar?ex=6820cf18&is=681f7d98&hm=0e331fb0b1e98e6e4a5661ebd266f75941691ab314b4c8aec1feaf201531a84a'; break;
       }
       window.open(url, '_blank');
     }
