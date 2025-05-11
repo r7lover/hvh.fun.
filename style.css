@@ -1,9 +1,12 @@
 :root {
   --bg-color: #0f1115;
   --card-color: #1c1f26;
-  --accent-color: #3b82f6;
+  --accent-color: #3b82f6;        /* Blue - primary */
   --accent-hover: #2563eb;
-  --error-color: #ef4444;
+  --error-color: #ef4444;         /* Red - error */
+  --warning-color: #facc15;       /* Yellow - warning */
+  --success-color: #22c55e;       /* Green - success */
+  --info-color: #38bdf8;          /* Light blue - info */
   --text-color: #f1f5f9;
   --muted-text: #9ca3af;
   --border-radius: 14px;
@@ -72,11 +75,30 @@ button:focus {
   transform: scale(var(--hover-scale));
 }
 
+/* Status messages */
 .error {
   color: var(--error-color);
   text-align: center;
   font-size: 14px;
   display: none;
+}
+
+.success {
+  color: var(--success-color);
+  text-align: center;
+  font-size: 14px;
+}
+
+.warning {
+  color: var(--warning-color);
+  text-align: center;
+  font-size: 14px;
+}
+
+.info {
+  color: var(--info-color);
+  text-align: center;
+  font-size: 14px;
 }
 
 .quote {
@@ -117,6 +139,7 @@ button:focus {
   height: auto;
 }
 
+/* Mobile */
 @media screen and (max-width: 500px) {
   .container, .about-us-section {
     width: 95%;
